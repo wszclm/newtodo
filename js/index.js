@@ -4,7 +4,6 @@ new Vue({
         title: "to-do-list",
         all:localStorage.todo?JSON.parse(localStorage.todo):[],
         con: "",
-        message: "",
         status: "all",
         show: false
     },
@@ -18,7 +17,7 @@ new Vue({
             var obj = {};
             obj.con = this.con;
             obj.id = new Date().getTime() + 1000 * Math.random();
-            obj.title = this.con;
+            // obj.title = this.con;
             obj.state = 0;
             obj.show=true;
             this.all.push(obj);
