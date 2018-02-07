@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+    <link rel="stylesheet" href="css/index.css">
+    <style>
+
+    </style>
+</head>
+<body>
+<div id="root">
+    <h1>{{title}}</h1>
+    <div class="todo">
+        <div class="input">
+            <input type="text" v-model="con" placeholder="请输入内容" @keydown.13="save"><!--v-on:事件绑定-->
+        </div>
+        <div class="btns">
+            <input type="button" value="全部" @click="changeStatus('all')" :class="{select:status=='all'}">
+            <input type="button" value="已完成" @click="changeStatus(1)" :class="{select:status=='1'}">
+            <input type="button" value="未完成" @click="changeStatus(0)" :class="{select:status=='0'}">
+
+        </div>
+
+        <ul class="listbox" v-show="datas.length>0">
+            <li class="list" v-for="item in datas">
+                <div v-show="item.show" @dblclick="changeShow(item)">
+                    <span class="done" @click="changeState(item)" :class="{state:item.state==1}"></span>
+                    <!--加冒号只能写js代码=v-bind：-->
+                    <span class="con">{{item.con}}</span>
+                    <span class="del" @click="del(item.id)">删除</span>
+                </div>
+                <div v-show="!item.show">
+                    <input type="text" @blur="changeShow(item)" v-model="item.con">
+                </div>
+            </li>
+        </ul>
+        <ul class="listbox" v-show="datas.length==0">没有数据</ul>
+    </div>
+</div>
+</body>
+<script src="js/index.js"></script>
+</html>
