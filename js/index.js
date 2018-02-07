@@ -2,7 +2,7 @@ new Vue({
     el: "#root",
     data: {
         title: "to-do-list",
-        all: localStorage.todo?JSON.parse(localStorage.todo):[],
+        all:localStorage.todo?JSON.parse(localStorage.todo):[],
         con: "",
         message: "",
         status: "all",
@@ -39,6 +39,7 @@ new Vue({
             } else {
                 item.state = 0
             }
+            localStorage.todo = JSON.stringify(this.all);
         },
         changeStatus(num) {
             this.status = num;
